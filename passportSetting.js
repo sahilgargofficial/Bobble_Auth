@@ -1,6 +1,6 @@
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
-const FaceBookStrategy = require('passport-facebook')
+const FaceBookStrategy = require('passport-facebook').Strategy
 const dotenv = require('dotenv')
 dotenv.config()
 
