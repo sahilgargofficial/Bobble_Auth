@@ -24,7 +24,7 @@ passport.deserializeUser(function(user, done) {
 passport.use(new GoogleStrategy({
         clientID: process.env.googleClient_id,
         clientSecret: process.env.googleClient_secret,
-        callbackURL: "http://localhost:8080/google/callback"
+        callbackURL: "https://bobble-auth.herokuapp.com/google/callback"
     },
     function(accessToken, refreshToken, profile, done) {
         /*
