@@ -50,7 +50,7 @@ app.get('/good', isLoggedIn, (req, res) => {
 
 // Auth Routes
 app.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
-app.get('/facebook' , passport.authenticate('facebook', { scope: ['profile', 'email'] }))
+app.get('/facebook' , passport.authenticate('facebook'))
 
 app.get('/google/callback', passport.authenticate('google', { failureRedirect: '/failed' }),
     function(req, res) {
