@@ -1,5 +1,6 @@
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const FaceBookStrategy = require('passport-facebook')
 const dotenv = require('dotenv')
 dotenv.config()
 
@@ -27,11 +28,16 @@ passport.use(new GoogleStrategy({
         callbackURL: "https://bobble-auth.herokuapp.com/google/callback"
     },
     function(accessToken, refreshToken, profile, done) {
-        /*
-         use the profile info (mainly profile id) to check if the user is registerd in ur db
-         If yes select the user and pass him to the done callback
-         If not create the user and then select him and pass to callback
-        */
+
         return done(null, profile);
     }
 ));
+
+passport.use(new FaceBookStrategy({
+    clientID: process.env.facebookClient_id,
+    clientSecret: process.env.facebookClient_secret,
+    callbackURL: "https://bobble-auth.herokuapp.com/facebook/callback"
+} ,  function(accessToken, refreshToken, profile, done) {
+
+    return done(null, profile);
+}))

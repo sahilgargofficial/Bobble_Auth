@@ -9,3 +9,7 @@ After the download or clone run `npm install`  to install all the dependencies.
 # routes
 /good route is authorized when user enters his/her correct credential via google , facebook or just by signup
 / is home route which will open signup page
+
+
+# website is deployed at 
+https://bobble-auth.herokuapp.com/
