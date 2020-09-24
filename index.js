@@ -14,7 +14,7 @@ app.use(cors())
 app.set('views', path.join(__dirname, '/views'))
 app.set('view engine', 'ejs')
 // parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({extended: false}))
 
 // parse application/json
 app.use(bodyParser.json())
@@ -43,25 +43,30 @@ app.get('/failed', (req, res) => res.send('You Failed to log in!'))
 
 // In this route you can see that if the user is logged in u can access his info in: req.user
 app.get('/good', isLoggedIn, (req, res) => {
-    res.render('googleHome' , {
-        user:req.user
+    res.render('googleHome', {
+        user: req.user
+    })
+})
+app.get('/goodFacebook', isLoggedIn, (req, res) => {
+    res.render('faceBookHome', {
+        user: req.user
     })
 })
 
 // Auth Routes
-app.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
-app.get('/facebook' , passport.authenticate('facebook'))
+app.get('/google', passport.authenticate('google', {scope: ['profile', 'email']}));
+app.get('/facebook', passport.authenticate('facebook'));
 
-app.get('/google/callback', passport.authenticate('google', { failureRedirect: '/failed' }),
-    function(req, res) {
+app.get('/google/callback', passport.authenticate('google', {failureRedirect: '/failed'}),
+    function (req, res) {
         // Successful authentication, redirect home.
         res.redirect('/good');
     }
 );
-app.get('/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/failed' }),
-    function(req, res) {
+app.get('/facebook/callback', passport.authenticate('facebook', {failureRedirect: '/failed'}),
+    function (req, res) {
         // Successful authentication, redirect home.
-        res.redirect('/good');
+        res.redirect('/goodFacebook');
     }
 );
 
@@ -75,7 +80,7 @@ app.get('/login', (req, res) => {
     res.render('login');
 })
 
-app.get('/' , (req , res) => {
+app.get('/', (req, res) => {
     res.render('index')
 })
 

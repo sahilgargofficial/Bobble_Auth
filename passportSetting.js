@@ -36,7 +36,8 @@ passport.use(new GoogleStrategy({
 passport.use(new FaceBookStrategy({
     clientID: process.env.facebookClient_id,
     clientSecret: process.env.facebookClient_secret,
-    callbackURL: "https://bobble-auth.herokuapp.com/facebook/callback"
+    callbackURL: "https://bobble-auth.herokuapp.com/facebook/callback",
+    profileFields: ['id', 'displayName', 'photos', 'email']
 } ,  function(accessToken, refreshToken, profile, done) {
 
     return done(null, profile);
